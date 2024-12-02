@@ -1,0 +1,50 @@
+body{
+    background-image: url("Resources/tile.jpg") ;
+}
+
+
+#namePrompt{
+    background-color: orange;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+
+}
+
+.toppingChoice{
+    background-color: orange;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    display: block;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+}
+
+.title-container
+{
+background-color: orange;
+color: white;
+text-align: center;
+font-family: "Lacquer", system-ui;
+font-weight: 200;
+font-size: 30px;
+font-style: normal;
+padding: 10px;
+margin: -10px -10px 30px -10px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+margin-bottom: 20px;
+}
+
+.title-container img {
+    width: 80px;
+    height: 80px;
+    filter: invert(100%);
+    transform: rotate(25deg);
+    margin-top:35px;
+}

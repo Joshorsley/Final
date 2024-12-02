@@ -1,0 +1,67 @@
+<?php
+session_start();
+?>
+<!--
+FILE : A03.php
+PROJECT : PROG2001 - Final - SET Pizza Shop
+PROGRAMMER : Josh Horsley | Josh Rice
+FIRST VERSION : 2024-10-018
+DESCRIPTION :  This file contains the PHP logic for the Hi-Lo game. It takes user input from forms, including the player's name and 
+the maximum guess number. It validates user guesses, provides feedback on guesses, and includes the ability to play again. 
+Error handling is included for invalid inputs, and direct access to the page is restricted.
+-->
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Hi-Lo Game (Revisited)</title>
+        <link rel="stylesheet" href="Final.css">
+        <script src="Final.js" defer></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lacquer&family=Miniver&family=Oswald:wght@200..700&family=Permanent+Marker&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+    </body>
+
+    <?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    if(!isset($_SESSION["fullName"])) {
+        $fullName = htmlspecialchars($_POST["fullName"]);
+        $_SESSION["fullName"] = $fullName;
+        printForm_Page2($_SESSION['fullName'],"");
+    } 
+
+}
+else
+{
+    echo"<div class=\"warning\">Mama Mia thats a spicy meatball! Direct access is prohibited.</div>";
+}
+
+function printForm_Page2($fullName, $errorMsg){
+    echo" <form id= \"page2\" method=\"POST\" action=\"Final.php\">
+            <h1>SET Pizza Shop</h1>
+            <div class=\"toppingChoice\">
+                <h2 id=\"greeting\">Ciao <span class=\"highlight\">$fullName</span></h2>
+                <p>At the SET Pizza Shop You get ONE Pizza and we only make em ONE Size!<br>
+                ALL PIZZAS COME WITH SAUCE AND CHEESE!</p>
+
+                <p>These are the only toppings we got, you don't like em go somewheres else</p>
+                <input type=\"checkbox\" id=\"pepperoni\" name=\"peperoni\" value=\"pepperoni\">
+                <label for=\"pepperoni\">Pepperoni ($1.50)</label><br>
+                <input type=\"checkbox\" id=\"mushrooms\" name=\"mushrooms\" value=\"mushrooms\">
+                <label for=\"mushrooms\">Mushrooms ($1.00)</label><br>
+                <input type=\"checkbox\" id=\"greenOlives\" name=\"greenOlives\" value=\"greenOlives\">
+                <label for=\"greenOlives\">Green Olives ($1.00)</label><br>
+                <input type=\"checkbox\" id=\"greenPeppers\" name=\"greenPeppers\" value=\"greenPeppers\">
+                <label for=\"greenPeppers\">Green Peppers ($1.00)</label><br>
+                <input type=\"checkbox\" id=\"doubleCheese\" name=\"doubleCheese\" value=\"doubleCheese\">
+                <label for=\"doubleCheese\">Double Cheese ($2.25)</label><br>
+                <p id=\"maxNumberError\" class=\"errorMessage\">$errorMsg</p>
+                <button type=\"submit\">Make It!</button>
+            </div>
+        </form>";
+}  
+    ?>
