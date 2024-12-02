@@ -42,7 +42,10 @@ else
 
 function printForm_Page2($fullName, $errorMsg){
     echo" <form id= \"page2\" method=\"POST\" action=\"Final.php\">
-            <h1>SET Pizza Shop</h1>
+             <div class = \"title-container\">
+                <img src=\"Resources/pizza.png\" alt=\"Pizza Icon\">
+                <h1 class=\"title\">SET Pizza Shop</h1>
+            </div>
             <div class=\"toppingChoice\">
                 <h2 id=\"greeting\">Ciao <span class=\"highlight\">$fullName</span></h2>
                 <p>At the SET Pizza Shop You get ONE Pizza and we only make em ONE Size!<br>

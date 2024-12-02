@@ -8,7 +8,10 @@ body{
     color: white;
     padding: 20px;
     border-radius: 12px;
-
+    display:flex;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .toppingChoice{
@@ -32,18 +35,17 @@ font-family: "Lacquer", system-ui;
 font-weight: 200;
 font-size: 30px;
 font-style: normal;
-padding: 10px;
+padding: 5px;
 margin: -10px -10px 30px -10px;
 display: flex;
 align-items: center;
 justify-content: center;
 gap: 10px;
-margin-bottom: 20px;
 }
 
 .title-container img {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     filter: invert(100%);
     transform: rotate(25deg);
     margin-top:35px;
