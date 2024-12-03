@@ -5,16 +5,68 @@ body{
 }
 
 
-#namePrompt{
+
+#namePrompt {
     background-color: orange;
     color: white;
-    padding: 20px;
-    border-radius: 12px;
-    display:flex;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 30px 20px; 
+    border-radius: 16px; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    max-width: 400px; 
+    margin: 20px auto; 
+    font-family: "Parkinsans", sans-serif;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+#namePrompt input[type="text"] {
+    width: 100%; 
+    max-width: 350px; 
+    padding: 10px; 
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 8px; 
+    font-size: 16px; 
+    box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+#namePrompt input::placeholder {
+    color: rgba(255, 255, 255, 0.7); 
+}
+
+#namePrompt button {
+    background-color: #008080; 
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#namePrompt button:hover {
+    background-color: #005454; 
+    transform: translateY(-2px); 
+}
+
+#namePrompt button:active {
+    transform: translateY(0); 
+}
+
+
+#namePrompt p {
+    color: #d32f2f; 
+    font-size: 14px;
+    font-weight: bold;
+}
+
 
 .toppingChoice{
     background-color: orange;
@@ -22,21 +74,25 @@ body{
     padding: 20px;
     border-radius: 12px;
     display: block;
-    max-width: 800px;
+    width: 60%;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
     align-content: center;
+    font-family: "Parkinsans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 .title-container {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Positions elements at the far ends */
+    justify-content: space-between; 
     font-family: "Lacquer", system-ui;
     font-weight: 200;
     font-size: 30px;
     color: white;
-    background-color: orange; /* Optional background color for title */
+    background-color: orange; 
     padding: 10px 20px;
     margin-bottom: 50px;
     margin-top: -10px;
@@ -47,6 +103,16 @@ body{
     top:0;
     left: 0;
     right: 0;
+    border-bottom:2px solid white ;
+}
+
+.title-container h1 {
+    margin: 0;
+    flex-grow: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
 }
 
 #left-side {
@@ -54,6 +120,7 @@ body{
     height: 155px;
     filter: invert(100%);
     margin:-10px;
+    margin-left: -20px;
     border-right: 2px solid black;
 }
 
@@ -62,16 +129,8 @@ body{
     height: 155px;
     filter: invert(100%);
     margin: -10px;
+    margin-right: -20px;
     border-left: 2px solid black;
-}
-
-.title-container h1 {
-    margin: 0;
-    flex-grow: 1; /* Allows the title to expand and fill space between the images */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center; /* Ensures the title stays centered */
 }
 
 #pizza {
@@ -80,7 +139,9 @@ body{
     max-height: 70px;
     filter: invert(100%);
     transform: rotate(25deg);
-    margin-right: 10px; /* Adds space between the title and logo */
+    margin-right: 5px;
+    margin-top: 30px; 
+
 }
 
 #hand{
