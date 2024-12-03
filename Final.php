@@ -42,28 +42,50 @@ else
 
 function printForm_Page2($fullName, $errorMsg){
     echo" <form id= \"page2\" method=\"POST\" action=\"Final.php\">
-             <div class = \"title-container\">
-                <img src=\"Resources/pizza.png\" alt=\"Pizza Icon\">
-                <h1 class=\"title\">SET Pizza Shop</h1>
+            <div class = \"title-container\">
+                <img id=\"left-side\" src=\"Resources/sideimage.png\">
+                <h1><img id=\"pizza\" src=\"Resources/pizza.png\" alt=\"Pizza Logo\">SET Pizza Shop</h1>
+                <img id=\"right-side\" src=\"Resources/sideimage.png\">
             </div>
             <div class=\"toppingChoice\">
-                <h2 id=\"greeting\">Ciao <span class=\"highlight\">$fullName</span></h2>
+                <h2 id=\"greeting\">Ciao <span class=\"highlight\">$fullName</span><img id=\"hand\" src=\"Resources/italian.png\"></h2>
                 <p>At the SET Pizza Shop You get ONE Pizza and we only make em ONE Size!<br>
                 ALL PIZZAS COME WITH SAUCE AND CHEESE!</p>
 
-                <p>These are the only toppings we got, you don't like em go somewheres else</p>
-                <input type=\"checkbox\" id=\"pepperoni\" name=\"peperoni\" value=\"pepperoni\">
-                <label for=\"pepperoni\">Pepperoni ($1.50)</label><br>
-                <input type=\"checkbox\" id=\"mushrooms\" name=\"mushrooms\" value=\"mushrooms\">
-                <label for=\"mushrooms\">Mushrooms ($1.00)</label><br>
-                <input type=\"checkbox\" id=\"greenOlives\" name=\"greenOlives\" value=\"greenOlives\">
-                <label for=\"greenOlives\">Green Olives ($1.00)</label><br>
-                <input type=\"checkbox\" id=\"greenPeppers\" name=\"greenPeppers\" value=\"greenPeppers\">
-                <label for=\"greenPeppers\">Green Peppers ($1.00)</label><br>
-                <input type=\"checkbox\" id=\"doubleCheese\" name=\"doubleCheese\" value=\"doubleCheese\">
-                <label for=\"doubleCheese\">Double Cheese ($2.25)</label><br>
-                <p id=\"maxNumberError\" class=\"errorMessage\">$errorMsg</p>
-                <button type=\"submit\">Make It!</button>
+               <p>These are the only toppings we got, you don't like em go somewheres else</p>
+<form>
+    <input type=\"checkbox\" id=\"pepperoni\" name=\"pepperoni\" value=\"pepperoni\">
+    <label for=\"pepperoni\">
+        <img src=\"Resources/pepperoni.png\" alt=\"Pepperoni\" style=\"width: 20px; height: 20px; margin-right: 8px;\">
+        Pepperoni ($1.50)
+    </label><br>
+
+    <input type=\"checkbox\" id=\"mushrooms\" name=\"mushrooms\" value=\"mushrooms\">
+    <label for=\"mushrooms\">
+        <img src=\"Resources/mushroom.png\" alt=\"Mushrooms\" style=\"width: 20px; height: 20px; margin-right: 8px;\">
+        Mushrooms ($1.00)
+    </label><br>
+
+    <input type=\"checkbox\" id=\"greenOlives\" name=\"greenOlives\" value=\"greenOlives\">
+    <label for=\"greenOlives\">
+        <img src=\"Resources/olives.png\" alt=\"Green Olives\" style=\"width: 20px; height: 20px; margin-right: 8px;\">
+        Green Olives ($1.00)
+    </label><br>
+
+    <input type=\"checkbox\" id=\"greenPeppers\" name=\"greenPeppers\" value=\"greenPeppers\">
+    <label for=\"greenPeppers\">
+        <img src=\"Resources/capsicum.png\" alt=\"Green Peppers\" style=\"width: 20px; height: 20px; margin-right: 8px;\">
+        Green Peppers ($1.00)
+    </label><br>
+
+    <input type=\"checkbox\" id=\"doubleCheese\" name=\"doubleCheese\" value=\"doubleCheese\">
+    <label for=\"doubleCheese\">
+        <img src=\"Resources/cheese.png\" alt=\"Double Cheese\" style=\"width: 20px; height: 20px; margin-right: 8px;\">
+        Double Cheese ($2.25)
+    </label><br>
+
+    <p id=\"Error\" class=\"errorMessage\">$errorMsg</p>
+    <button type=\"submit\">Make It!</button>
             </div>
         </form>";
 }  

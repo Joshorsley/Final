@@ -1,5 +1,7 @@
 body{
-    background-image: url("Resources/tile.jpg") ;
+    background-repeat: repeat-y;
+    background-size: cover; 
+    background-image: url("Resources/background.jpg") ;
 }
 
 
@@ -26,27 +28,64 @@ body{
     align-content: center;
 }
 
-.title-container
-{
-background-color: orange;
-color: white;
-text-align: center;
-font-family: "Lacquer", system-ui;
-font-weight: 200;
-font-size: 30px;
-font-style: normal;
-padding: 5px;
-margin: -10px -10px 30px -10px;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Positions elements at the far ends */
+    font-family: "Lacquer", system-ui;
+    font-weight: 200;
+    font-size: 30px;
+    color: white;
+    background-color: orange; /* Optional background color for title */
+    padding: 10px 20px;
+    margin-bottom: 50px;
+    margin-top: -10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    text-align: center;
+    position: relative;
+    top:0;
+    left: 0;
+    right: 0;
 }
 
-.title-container img {
-    width: 70px;
-    height: 70px;
+#left-side {
+    width: 300px;
+    height: 155px;
+    filter: invert(100%);
+    margin:-10px;
+    border-right: 2px solid black;
+}
+
+#right-side {
+    width: 300px;
+    height: 155px;
+    filter: invert(100%);
+    margin: -10px;
+    border-left: 2px solid black;
+}
+
+.title-container h1 {
+    margin: 0;
+    flex-grow: 1; /* Allows the title to expand and fill space between the images */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Ensures the title stays centered */
+}
+
+#pizza {
+    size: relative;
+    max-width: 70px;
+    max-height: 70px;
     filter: invert(100%);
     transform: rotate(25deg);
-    margin-top:35px;
+    margin-right: 10px; /* Adds space between the title and logo */
+}
+
+#hand{
+    height: 20px;
+    width: 20px;
+    padding-left: 10px;
+    filter: invert(100%);
 }
