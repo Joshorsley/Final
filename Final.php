@@ -29,6 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         printForm_Page2($_SESSION['firstName'],"");
     }
      
+
+
 }
 else
 {
@@ -39,9 +41,9 @@ function printForm_Page2($firstName, $errorMsg) {
     $toppingForm = <<<HTML
     <form id="toppingForm" method="POST" action="Final.php">
         <div class="title-container">
-            <img id="left-side" src="Resources/sideimage.png">
+            
             <h1><img id="pizza" src="Resources/pizza.png" alt="Pizza Logo">SET Pizza Shop</h1>
-            <img id="right-side" src="Resources/sideimage.png">
+        
         </div>
         <div class="toppingChoice">
             <h2 id="greeting">Ciao $firstName! <img id="hand" src="Resources/italian.png"></h2>
@@ -76,52 +78,19 @@ HTML;
     echo $toppingForm;
 }
 
-function printForm_Page3($firstName, $errorMsg) {
-    // Get the toppings and total price from the session
-    $toppings = $_SESSION['toppings'];
-    $totalPrice = $_SESSION['totalPrice'];
+function printForm_Page3($firstName, $errorMsg)
+{
+    $orderSummary = <<<HTML
+    <form id="toppingForm" method="POST" action="Final.php">
+        <div class="title-container">
+            <img id="left-side" src="Resources/sideimage.png">
+            <h1><img id="pizza" src="Resources/pizza.png" alt="Pizza Logo">SET Pizza Shop</h1>
+            <img id="right-side" src="Resources/sideimage.png">
+        </div>
 
-    $toppingNames = [
-        "pepperoni" => "Pepperoni",
-        "mushrooms" => "Mushrooms",
-        "greenOlives" => "Green Olives",
-        "greenPeppers" => "Green Peppers",
-        "doubleCheese" => "Double Cheese"
-    ];
-
-    $orderSummary = "<h2>Order Confirmation</h2>";
-    $orderSummary .= "<p>Ciao, $firstName! Here is your order:</p>";
-    $orderSummary .= "<ul>";
-
-    foreach ($toppings as $topping) {
-        if (isset($toppingNames[$topping])) {
-            $orderSummary .= "<li>{$toppingNames[$topping]}</li>";
-        }
-    }
-
-    $orderSummary .= "</ul>";
-    $orderSummary .= "<p>Total Price: \$$totalPrice</p>";
-    $orderSummary .= "<form action='Final.php' method='POST'>
-                        <button type='submit' name='confirm' value='yes'>CONFIRM</button>
-                        <button type='submit' name='cancel' value='yes'>CANCEL</button>
-                        <p id='Error' class='errorMessage>$errorMsg</p>
-                      </form>";
+    </form>
+HTML;
 
     echo $orderSummary;
-
-    // Handle confirm or cancel actions
-    if (isset($_POST['confirm'])) {
-        echo "<p>Your order has been confirmed!</p>";
-        // Add additional logic to finalize the order (store in DB, etc.)
-    } elseif (isset($_POST['cancel'])) {
-        echo "<p>Your order has been canceled. Please go back to the toppings page.</p>";
-        // Optionally, redirect to a previous page or reset session
-        session_unset(); // Reset the session data
-        header("Location: Final.php");
-        exit();
-    }
 }
-?>
-
-
-    
+    ?>
