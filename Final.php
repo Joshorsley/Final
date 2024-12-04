@@ -12,7 +12,7 @@ DESCRIPTION :
     <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Hi-Lo Game (Revisited)</title>
+        <title>SET Pizza</title>
         <link rel="stylesheet" href="Final.css">
         <script src="Final.js" defer></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,13 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $_SESSION['firstName'] = $nameParts[0];
         $_SESSION['fullName'] = $fullName;
         printForm_Page2($_SESSION['firstName'],"");
-    } else {
-        if (isset($_POST["toppings"])) {
-            $_SESSION["selectedToppings"] = $_POST["toppings"];
-        } else {
-            $_SESSION["selectedToppings"] = [];
-        }
     }
+     
 
 
 }
@@ -49,7 +44,7 @@ else
 
 function printForm_Page2($firstName, $errorMsg) {
     $toppingForm = <<<HTML
-    <form id="page2" method="POST" action="Final.php">
+    <form id="toppingForm" method="POST" action="Final.php">
         <div class="title-container">
             <img id="left-side" src="Resources/sideimage.png">
             <h1><img id="pizza" src="Resources/pizza.png" alt="Pizza Logo">SET Pizza Shop</h1>
@@ -62,27 +57,25 @@ function printForm_Page2($firstName, $errorMsg) {
             <p>These are the only toppings we got, you don't like em go somewheres else</p>
             <div class="toppings">
                 <p>Select your toppings:</p>
-                <form id="toppingForm" method="POST">
-                    <label>
-                        <input type="checkbox" name="toppings[]" value="pepperoni" class="topping"> Pepperoni ($1.50)
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="toppings[]" value="mushrooms" class="topping"> Mushrooms ($1.00)
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="toppings[]" value="greenOlives" class="topping"> Green Olives ($1.00)
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="toppings[]" value="greenPeppers" class="topping"> Green Peppers ($1.00)
-                    </label><br>
-                    <label>
-                        <input type="checkbox" name="toppings[]" value="doubleCheese" class="topping"> Double Cheese ($2.25)
-                    </label><br>
-                    <p>Total Price: $<span id="totalPrice">0.00</span></p>
-                    <button type="submit">Make It!</button>
-                    <p id="Error" class="errorMessage">$errorMsg</p>
-                </form>
+                <label>
+                    <input type="checkbox" name="toppings[]" value="pepperoni" class="topping"> Pepperoni ($1.50)
+                </label><br>
+                <label>
+                    <input type="checkbox" name="toppings[]" value="mushrooms" class="topping"> Mushrooms ($1.00)
+                </label><br>
+                <label>
+                    <input type="checkbox" name="toppings[]" value="greenOlives" class="topping"> Green Olives ($1.00)
+                </label><br>
+                <label>
+                    <input type="checkbox" name="toppings[]" value="greenPeppers" class="topping"> Green Peppers ($1.00)
+                </label><br>
+                <label>
+                    <input type="checkbox" name="toppings[]" value="doubleCheese" class="topping"> Double Cheese ($2.25)
+                </label><br>
+                <p>Total Price: $<span id="totalPrice">10.00</span></p>
             </div>
+            <button type="submit">Make It!</button>
+            <p id="Error" class="errorMessage">$errorMsg</p>
         </div>
     </form>
 HTML;
