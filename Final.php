@@ -32,7 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $fullName = htmlspecialchars($_POST["fullName"]);
         $_SESSION["fullName"] = $fullName;
         printForm_Page2($_SESSION['fullName'],"");
-    } 
+    }
+
 
 }
 else
@@ -48,12 +49,13 @@ function printForm_Page2($fullName, $errorMsg){
                 <img id=\"right-side\" src=\"Resources/sideimage.png\">
             </div>
             <div class=\"toppingChoice\">
-                <h2 id=\"greeting\">Ciao <span class=\"highlight\">$fullName</span><img id=\"hand\" src=\"Resources/italian.png\"></h2>
+                <h2 id=\"greeting\">Ciao $fullName!<img id=\"hand\" src=\"Resources/italian.png\"></h2>
                 <p>At the SET Pizza Shop You get ONE Pizza and we only make em ONE Size!<br>
                 ALL PIZZAS COME WITH SAUCE AND CHEESE!</p>
 
                <p>These are the only toppings we got, you don't like em go somewheres else</p>
 <form>
+<div class=\"ingredients\">
     <input type=\"checkbox\" id=\"pepperoni\" name=\"pepperoni\" value=\"pepperoni\">
     <label for=\"pepperoni\">
         <img src=\"Resources/pepperoni.png\" alt=\"Pepperoni\" style=\"width: 20px; height: 20px; margin-right: 8px;\">
@@ -83,10 +85,11 @@ function printForm_Page2($fullName, $errorMsg){
         <img src=\"Resources/cheese.png\" alt=\"Double Cheese\" style=\"width: 20px; height: 20px; margin-right: 8px;\">
         Double Cheese ($2.25)
     </label><br>
-
+        </div> 
     <p id=\"Error\" class=\"errorMessage\">$errorMsg</p>
     <button type=\"submit\">Make It!</button>
-            </div>
+          
+    </div>
         </form>";
 }  
     ?>
