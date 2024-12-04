@@ -29,6 +29,7 @@ function startForm(){
 function validateName(event) {
     const fullName = document.getElementById('fullName').value.trim();
     const nameError = document.getElementById('nameError');
+    const regex = /^[A-Za-z]+ [A-Za-z]+$/;
     nameError,textContent = "";
 
     if (fullName == '') {
@@ -42,6 +43,12 @@ function validateName(event) {
         nameError.textContent = "Error: Please enter a proper Name and not a number.";
         return;
     } 
+    
+    if (!regex.test(fullName)) {
+        event.preventDefault();
+        nameError.textContent = "Error: Please enter a valid first and last name (only alphabetical characters, separated by a space).";
+        return;
+    }
 }
 
 window.addEventListener("load", () => {

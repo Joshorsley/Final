@@ -78,16 +78,16 @@ HTML;
     echo $toppingForm;
 }
 
-function printForm_Page3($firstName, $errorMsg)
+function printForm_Page3($fullName, $errorMsg)
 {
     $orderSummary = <<<HTML
     <form id="toppingForm" method="POST" action="Final.php">
         <div class="title-container">
-            <img id="left-side" src="Resources/sideimage.png">
+            
             <h1><img id="pizza" src="Resources/pizza.png" alt="Pizza Logo">SET Pizza Shop</h1>
-            <img id="right-side" src="Resources/sideimage.png">
+            
         </div>
-
+        <h2 id="greeting">Ciao $fullName! <img id="hand" src="Resources/italian.png"></h2>
     </form>
 HTML;
 
