@@ -1,19 +1,14 @@
 <?php
 session_start();
 ?>
-<!--
-FILE : Final.php
-PROJECT : PROG2001 - Final - SET Pizza Shop
-PROGRAMMER : Josh Horsley | Josh Rice
-FIRST VERSION : 2024-12-02
-DESCRIPTION : 
--->
+
 <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="utf-8">
         <title>SET Pizza</title>
         <link rel="stylesheet" href="Final.css">
+        <script src="jquery-3.7.1.js"></script>
         <script src="Final.js" defer></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         printForm_Page2($_SESSION['firstName'],"");
     }
      
-
-
 }
 else
 {
@@ -58,19 +51,19 @@ function printForm_Page2($firstName, $errorMsg) {
             <div class="toppings">
                 <p>Select your toppings:</p>
                 <label>
-                    <input type="checkbox" name="toppings[]" value="pepperoni" class="topping"> Pepperoni ($1.50)
+                    <input type="checkbox" id="pepperoni" name="toppings[]" value="pepperoni" class="topping"> Pepperoni ($1.50)
                 </label><br>
                 <label>
-                    <input type="checkbox" name="toppings[]" value="mushrooms" class="topping"> Mushrooms ($1.00)
+                    <input type="checkbox" id="mushrooms" name="toppings[]" value="mushrooms" class="topping"> Mushrooms ($1.00)
                 </label><br>
                 <label>
-                    <input type="checkbox" name="toppings[]" value="greenOlives" class="topping"> Green Olives ($1.00)
+                    <input type="checkbox" id="greenOlives" name="toppings[]" value="greenOlives" class="topping"> Green Olives ($1.00)
                 </label><br>
                 <label>
-                    <input type="checkbox" name="toppings[]" value="greenPeppers" class="topping"> Green Peppers ($1.00)
+                    <input type="checkbox" id="greenPeppers" name="toppings[]" value="greenPeppers" class="topping"> Green Peppers ($1.00)
                 </label><br>
                 <label>
-                    <input type="checkbox" name="toppings[]" value="doubleCheese" class="topping"> Double Cheese ($2.25)
+                    <input type="checkbox" id="doubleCheese" name="toppings[]" value="doubleCheese" class="topping"> Double Cheese ($2.25)
                 </label><br>
                 <p>Total Price: $<span id="totalPrice">10.00</span></p>
             </div>
@@ -82,4 +75,53 @@ HTML;
 
     echo $toppingForm;
 }
-    ?>
+
+function printForm_Page3($firstName, $errorMsg) {
+    // Get the toppings and total price from the session
+    $toppings = $_SESSION['toppings'];
+    $totalPrice = $_SESSION['totalPrice'];
+
+    $toppingNames = [
+        "pepperoni" => "Pepperoni",
+        "mushrooms" => "Mushrooms",
+        "greenOlives" => "Green Olives",
+        "greenPeppers" => "Green Peppers",
+        "doubleCheese" => "Double Cheese"
+    ];
+
+    $orderSummary = "<h2>Order Confirmation</h2>";
+    $orderSummary .= "<p>Ciao, $firstName! Here is your order:</p>";
+    $orderSummary .= "<ul>";
+
+    foreach ($toppings as $topping) {
+        if (isset($toppingNames[$topping])) {
+            $orderSummary .= "<li>{$toppingNames[$topping]}</li>";
+        }
+    }
+
+    $orderSummary .= "</ul>";
+    $orderSummary .= "<p>Total Price: \$$totalPrice</p>";
+    $orderSummary .= "<form action='Final.php' method='POST'>
+                        <button type='submit' name='confirm' value='yes'>CONFIRM</button>
+                        <button type='submit' name='cancel' value='yes'>CANCEL</button>
+                        <p id='Error' class='errorMessage>$errorMsg</p>
+                      </form>";
+
+    echo $orderSummary;
+
+    // Handle confirm or cancel actions
+    if (isset($_POST['confirm'])) {
+        echo "<p>Your order has been confirmed!</p>";
+        // Add additional logic to finalize the order (store in DB, etc.)
+    } elseif (isset($_POST['cancel'])) {
+        echo "<p>Your order has been canceled. Please go back to the toppings page.</p>";
+        // Optionally, redirect to a previous page or reset session
+        session_unset(); // Reset the session data
+        header("Location: Final.php");
+        exit();
+    }
+}
+?>
+
+
+    

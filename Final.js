@@ -44,3 +44,48 @@ function validateName(event) {
     } 
 }
 
+window.addEventListener("load", () => {
+    const checkboxes = document.querySelectorAll(".topping");
+    checkboxes.forEach((checkbox) =>
+        checkbox.addEventListener("change", UpdateCost)
+    );
+});
+
+function UpdateCost() {
+    const pep = document.getElementById('pepperoni').checked ? 1 : 0;
+    const mush = document.getElementById('mushrooms').checked ? 1 : 0;
+    const grnOlive = document.getElementById('greenOlives').checked ? 1 : 0;
+    const grnpep = document.getElementById('greenPeppers').checked ? 1 : 0;
+    const doubleC = document.getElementById('doubleCheese').checked ? 1 : 0;
+
+    const payload = {
+        Pepperoni: pep,
+        Mushrooms: mush,
+        GreenOlives: grnOlive,
+        GreenPeppers: grnpep,
+        DoubleCheese: doubleC,
+    };
+
+    $.ajax({
+        url: "Ajaxhandler.php",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(payload),
+        success: function (serverData) {
+            console.log("Server Response:", serverData);
+            if (!serverData || typeof serverData.Value === 'undefined') {
+                console.error("Invalid server response", serverData);
+                document.getElementById("totalPrice").innerText = "Error calculating price";
+                return;
+            }
+            const total = serverData.Value;
+            document.getElementById("totalPrice").innerText = total.toFixed(2);
+        },
+        error: function (err) {
+            console.error("Error:", err);
+            document.getElementById("totalPrice").innerText = "Error";
+        }
+    });
+}
+
+
