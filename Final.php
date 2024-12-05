@@ -23,6 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
 
+        echo <<<HTML
+            <div class="title-container">
+                <h1><img id="pizza" src="Resources/pizza.png" alt="Pizza Logo">SET Pizza Shop</h1>
+            </div>
+        HTML;
+
         if ($action == 'confirm') {
             echo "<div class=\"success\">Your order has been placed successfully. Enjoy your pizza!</div>";
             session_destroy(); // Clear session after order confirmation
@@ -135,4 +141,4 @@ HTML;
 }
 
 
-    ?>
+?>

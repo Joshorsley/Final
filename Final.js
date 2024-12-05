@@ -27,7 +27,7 @@ function startForm(){
 // Returns: None
 
 function validateName(event) {
-    const fullName = document.getElementById('fullName');
+    const fullName = document.getElementById('fullName').value.trimEnd();
     const nameError = document.getElementById('nameError');
     const regex = /^[A-Za-z]+ [A-Za-z]+$/;
     nameError,textContent = "";
