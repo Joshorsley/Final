@@ -5,9 +5,9 @@ $basePrice =10.00;
 $toppingPrices = [
     'Pepperoni' => 1.50,
     'Mushrooms' => 1.00,
-    'DoubleCheese' => 2.25,
-    'GreenOlives' => 1.00,
-    'GreenPeppers' => 1.00
+    'Double Cheese' => 2.25,
+    'Green Olives' => 1.00,
+    'Green Peppers' => 1.00
 ];
 
 // Ensure the request is POST

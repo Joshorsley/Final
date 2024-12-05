@@ -66,11 +66,11 @@ function UpdateCost() {
     const doubleC = document.getElementById('doubleCheese').checked ? 1 : 0;
 
     const payload = {
-        Pepperoni: pep,
-        Mushrooms: mush,
-        GreenOlives: grnOlive,
-        GreenPeppers: grnpep,
-        DoubleCheese: doubleC,
+        "Pepperoni": pep,
+        "Mushrooms": mush,
+        "Green Olives": grnOlive,
+        "Green Peppers": grnpep,
+        "Double Cheese": doubleC,
     };
 
     $.ajax({
