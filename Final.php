@@ -56,8 +56,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Page 2 (Toppings Submission)
     else {
-
-        printForm_Page3($_SESSION['firstName'], $_SESSION['selectedToppings'], number_format($_SESSION['totalPrice'], 2)); // Move to Page 3
+        //If AJAX was never used, set selectedToppings and totalPrice to defaults.
+        $selectedToppings = [];
+        if(!isset($_SESSION['selectedToppings'])){
+            $selectedToppings[] = "No toppings selected.";
+        }
+        if(!isset($_SESSION['totalPrice'])){
+            $totalPrice = 10;
+        }else{
+            $totalPrice = $_SESSION['totalPrice'];
+        }
+        
+        
+        printForm_Page3($_SESSION['firstName'], $selectedToppings, number_format($totalPrice, 2)); // Move to Page 3
     }
 
 }else {
