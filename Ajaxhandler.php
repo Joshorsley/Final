@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Define topping prices
 $basePrice =10.00;
 $toppingPrices = [
@@ -42,6 +43,7 @@ foreach ($toppingPrices as $topping => $price) {
     }
 }
 
+$_SESSION['totalPrice'] = $totalPrice;
 // Respond with the calculated total price
 http_response_code(200); // Success
 header('Content-Type: application/json');

@@ -19,7 +19,7 @@ session_start();
 
     <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Action handling (Page 3 confirmation/cancellation)
+    
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
 
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
 
-        printForm_Page3($_SESSION['firstName'], $selectedToppings, number_format($totalPrice, 2)); // Move to Page 3
+        printForm_Page3($_SESSION['firstName'],  number_format($_SESSION['totalPrice'], 2)); // Move to Page 3
     }
 
 }else {
@@ -112,7 +112,7 @@ HTML;
     echo $toppingForm;
 }
 
-function printForm_Page3($firstName, $selectedToppings, $totalPrice) {
+function printForm_Page3($firstName, $totalPrice) {
     
     $orderSummary = <<<HTML
     <form id="confirmationForm" method="POST" action="Final.php">
