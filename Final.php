@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<div class=\"page4\">Thank you $fullName,<br> Your order has been placed successfully. Enjoy your pizza!</div>";
             session_destroy(); 
         } elseif ($action == 'cancel') {
-            echo "<div class=\"page4\">Thank you $fullName,<br> Your order has been cancelLed. Sorry to see you go.</div>";
+            echo "<div class=\"page4\">Thank you $fullName,<br> Your order has been cancelled. Sorry to see you go.</div>";
             session_destroy();
             exit;
         }
