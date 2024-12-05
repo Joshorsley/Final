@@ -30,10 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         HTML;
 
         if ($action == 'confirm') {
-            echo "<div class=\"success\">Your order has been placed successfully. Enjoy your pizza!</div>";
+            echo "<div class=\"order-summary\">Your order has been placed successfully. <br>Enjoy your pizza!</div>";
             session_destroy(); // Clear session after order confirmation
         } elseif ($action == 'cancel') {
-            echo "<div class=\"info\">Your order has been canceled. You will be redirected to start a new order.</div>";
+            echo "<div class=\"order-summary\">Your order has been canceled. <br>You will be redirected to start a new order.</div>";
             session_destroy();
             exit;
         }
@@ -55,9 +55,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Page 2 (Toppings Submission)
     else {
-        $toppings = $_POST['toppings'] ?? []; // Allow for no toppings
-
-        printForm_Page3($_SESSION['firstName'], $_SESSION['selectedToppings'], number_format($_SESSION['totalPrice'], 2)); // Move to Page 3
+        //If AJAX was never used, set selectedToppings and totalPrice to defaults.
+        $selectedToppings = [];
+        if(!isset($_SESSION['selectedToppings'])){
+            $selectedToppings[] = "No toppings selected.";
+        }
+        if(!isset($_SESSION['totalPrice'])){
+            $totalPrice = 10;
+        }else{
+            $totalPrice = $_SESSION['totalPrice'];
+        }
+        
+        
+        printForm_Page3($_SESSION['firstName'], $selectedToppings, number_format($totalPrice, 2)); // Move to Page 3
     }
 
 }else {
