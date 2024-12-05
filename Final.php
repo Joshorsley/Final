@@ -50,20 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Page 2 (Toppings Submission)
     else {
         $toppings = $_POST['toppings'] ?? []; // Allow for no toppings
-        $selectedToppings = [];
-        $basePrice = 10.00; // Example base price
-        $toppingPrices = ['Cheese' => 1.50, 'Pepperoni' => 2.00, 'Mushrooms' => 1.25]; // Example topping prices
-        $totalPrice = $basePrice;
 
-        // Calculate total price only if toppings are selected
-        foreach ($toppings as $topping) {
-            if (isset($toppingPrices[$topping])) {
-                $selectedToppings[$topping] = $toppingPrices[$topping];
-                $totalPrice += $toppingPrices[$topping];
-            }
-        }
-
-        printForm_Page3($_SESSION['firstName'],  number_format($_SESSION['totalPrice'], 2)); // Move to Page 3
+        printForm_Page3($_SESSION['firstName'], $_SESSION['selectedToppings'], number_format($_SESSION['totalPrice'], 2)); // Move to Page 3
     }
 
 }else {
@@ -112,8 +100,17 @@ HTML;
     echo $toppingForm;
 }
 
-function printForm_Page3($firstName, $totalPrice) {
+function printForm_Page3($firstName, $toppings, $totalPrice) {
     
+    $toppingList= "";
+    if (!empty($toppings)) {
+        foreach ($toppings as $topping) {
+            $toppingList .= "<li>" . ($topping) . "</li>";
+        }
+    } else {
+        $toppingList = "<li>No toppings selected</li>";
+    }
+
     $orderSummary = <<<HTML
     <form id="confirmationForm" method="POST" action="Final.php">
         <div class="title-container">
@@ -123,7 +120,7 @@ function printForm_Page3($firstName, $totalPrice) {
             <h2 id="greeting">Ciao $firstName! <img id="hand" src="Resources/italian.png"></h2>
             <h3>Your Order Summary</h3>
             <ul>
-               <li> stuff go here </li>
+               $toppingList
             </ul>
             <p><strong>Total Price: $</strong> <span id="totalPrice">$totalPrice</span></p>
             <div class="confirmation-buttons">

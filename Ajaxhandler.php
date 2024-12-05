@@ -43,6 +43,14 @@ foreach ($toppingPrices as $topping => $price) {
     }
 }
 
+foreach ($toppingPrices as $topping => $price) {
+    if (!empty($data[$topping]) && $data[$topping] == 1) {
+        $selectedToppings[] = $topping; // Add the topping name to the array
+    }
+}
+
+$_SESSION['selectedToppings'] = $selectedToppings;
+
 $_SESSION['totalPrice'] = $totalPrice;
 // Respond with the calculated total price
 http_response_code(200); // Success
