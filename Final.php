@@ -134,6 +134,7 @@ function printForm_Page3($firstName, $toppings, $totalPrice) {
         </div>
         <div class="order-summary">
             <h2 id="greeting">Ciao $firstName! <img id="hand" src="Resources/italian.png"></h2>
+            <p> please review your order</p>
             <h3>Your Order Summary:</h3>
             <ul>
                $toppingList
