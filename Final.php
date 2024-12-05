@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($action == 'confirm') {
             echo "<div class=\"page4\">Thank you $fullName,<br> Your order has been placed successfully. Enjoy your pizza!</div>";
-            session_destroy(); // Clear session after order confirmation
+            session_destroy(); 
         } elseif ($action == 'cancel') {
             echo "<div class=\"page4\">Thank you $fullName,<br> Your order has been canceled. Sorry to see you go.</div>";
             session_destroy();
@@ -41,21 +41,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } 
 
-    // Page 1 (Full Name Submission)
+   
     elseif (!isset($_SESSION["fullName"])) {
         if (isset($_POST["fullName"]) && !empty($_POST["fullName"])) {
             $fullName = htmlspecialchars($_POST["fullName"]);
             $nameParts = explode(" ", $fullName);
-            $_SESSION['firstName'] = $nameParts[0] ?? ''; // Handle single-word names
+            $_SESSION['firstName'] = $nameParts[0] ?? ''; 
             $_SESSION['fullName'] = $fullName;
 
-            printForm_Page2($_SESSION['firstName'], ""); // Move to Page 2
-        } else {
+            printForm_Page2($_SESSION['firstName'], "");
             echo "<div class=\"warning\">Please provide your full name.</div>";
         }
     } 
 
-    // Page 2 (Toppings Submission)
+    
     else {
         //If AJAX was never used, set selectedToppings and totalPrice to defaults.
         $selectedToppings = [];
