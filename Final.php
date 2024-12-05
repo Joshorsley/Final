@@ -59,6 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $selectedToppings = [];
         if(!isset($_SESSION['selectedToppings'])){
             $selectedToppings[] = "No toppings selected.";
+        }else{
+            $selectedToppings = $_SESSION['selectedToppings'];
         }
         if(!isset($_SESSION['totalPrice'])){
             $totalPrice = 10;
