@@ -35,13 +35,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<div class=\"page4\">Thank you $fullName,<br> Your order has been placed successfully. Enjoy your pizza!</div>";
             session_destroy(); 
         } elseif ($action == 'cancel') {
-            echo "<div class=\"page4\">Thank you $fullName,<br> Your order has been canceled. Sorry to see you go.</div>";
+            echo "<div class=\"page4\">Thank you $fullName,<br> Your order has been cancelLed. Sorry to see you go.</div>";
             session_destroy();
             exit;
         }
     } 
 
-   
+    
     elseif (!isset($_SESSION["fullName"])) {
         if (isset($_POST["fullName"]) && !empty($_POST["fullName"])) {
             $fullName = htmlspecialchars($_POST["fullName"]);
@@ -49,7 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['firstName'] = $nameParts[0] ?? ''; 
             $_SESSION['fullName'] = $fullName;
 
-            printForm_Page2($_SESSION['firstName'], "");
+            printForm_Page2($_SESSION['firstName'], ""); 
+        } else {
             echo "<div class=\"warning\">Please provide your full name.</div>";
         }
     } 
@@ -74,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 }else {
-    // Not a POST request, display warning
+    
     echo "<div class=\"warning\">Mama Mia that's a spicy meatball! Direct access is prohibited.</div>";
 }
 
