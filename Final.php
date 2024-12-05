@@ -23,18 +23,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
 
-        $fullName = $_SESSION['fullName'];
         echo <<<HTML
             <div class="title-container">
                 <h1><img id="pizza" src="Resources/pizza.png" alt="Pizza Logo">SET Pizza Shop</h1>
             </div>
         HTML;
 
+        $fullName = $_SESSION['fullName'];
+
         if ($action == 'confirm') {
-            echo "<div class=\"order-summary\">Thank you $fullName, Your order has been placed successfully. Enjoy your pizza!</div>";
+            echo "<div class=\"page4\">Thank you $fullName,<br> Your order has been placed successfully. Enjoy your pizza!</div>";
             session_destroy(); // Clear session after order confirmation
         } elseif ($action == 'cancel') {
-            echo "<div class=\"order-summary\">Your order has been canceled. Sorry to see you go.</div>";
+            echo "<div class=\"page4\">Thank you $fullName,<br> Your order has been canceled. Sorry to see you go.</div>";
             session_destroy();
             exit;
         }
@@ -133,7 +134,7 @@ function printForm_Page3($firstName, $toppings, $totalPrice) {
         </div>
         <div class="order-summary">
             <h2 id="greeting">Ciao $firstName! <img id="hand" src="Resources/italian.png"></h2>
-            <h3>Your Order Summary</h3>
+            <h3>Your Order Summary:</h3>
             <ul>
                $toppingList
             </ul>
