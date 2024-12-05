@@ -109,12 +109,8 @@ HTML;
 function printForm_Page3($firstName, $toppings, $totalPrice) {
     
     $toppingList= "";
-    if (!empty($toppings)) {
-        foreach ($toppings as $topping) {
-            $toppingList .= "<li>" . ($topping) . "</li>";
-        }
-    } else {
-        $toppingList = "<li>No toppings selected</li>";
+    foreach ($toppings as $topping) {
+        $toppingList .= "<li>" . ($topping) . "</li>";
     }
 
     $orderSummary = <<<HTML

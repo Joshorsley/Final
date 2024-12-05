@@ -43,10 +43,15 @@ foreach ($toppingPrices as $topping => $price) {
     }
 }
 
+$selectedToppings = [];
 foreach ($toppingPrices as $topping => $price) {
     if (!empty($data[$topping]) && $data[$topping] == 1) {
         $selectedToppings[] = $topping; // Add the topping name to the array
     }
+}
+
+if(empty($selectedToppings)){
+    $selectedToppings[] = "No toppings selected.";
 }
 
 $_SESSION['selectedToppings'] = $selectedToppings;
