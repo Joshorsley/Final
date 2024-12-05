@@ -18,23 +18,57 @@ session_start();
     </body>
 
     <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Action handling (Page 3 confirmation/cancellation)
+    if (isset($_POST['action'])) {
+        $action = $_POST['action'];
 
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
-    if(!isset($_SESSION["fullName"])) {
-        $fullName = htmlspecialchars($_POST["fullName"]);
-        $nameParts = explode(" ",$fullName);
-        $_SESSION['firstName'] = $nameParts[0];
-        $_SESSION['fullName'] = $fullName;
-        printForm_Page2($_SESSION['firstName'],"");
+        if ($action == 'confirm') {
+            echo "<div class=\"success\">Your order has been placed successfully. Enjoy your pizza!</div>";
+            session_destroy(); // Clear session after order confirmation
+        } elseif ($action == 'cancel') {
+            echo "<div class=\"info\">Your order has been canceled. You will be redirected to start a new order.</div>";
+            session_destroy();
+            exit;
+        }
+    } 
+
+    // Page 1 (Full Name Submission)
+    elseif (!isset($_SESSION["fullName"])) {
+        if (isset($_POST["fullName"]) && !empty($_POST["fullName"])) {
+            $fullName = htmlspecialchars($_POST["fullName"]);
+            $nameParts = explode(" ", $fullName);
+            $_SESSION['firstName'] = $nameParts[0] ?? ''; // Handle single-word names
+            $_SESSION['fullName'] = $fullName;
+
+            printForm_Page2($_SESSION['firstName'], ""); // Move to Page 2
+        } else {
+            echo "<div class=\"warning\">Please provide your full name.</div>";
+        }
+    } 
+
+    // Page 2 (Toppings Submission)
+    else {
+        $toppings = $_POST['toppings'] ?? []; // Allow for no toppings
+        $selectedToppings = [];
+        $basePrice = 10.00; // Example base price
+        $toppingPrices = ['Cheese' => 1.50, 'Pepperoni' => 2.00, 'Mushrooms' => 1.25]; // Example topping prices
+        $totalPrice = $basePrice;
+
+        // Calculate total price only if toppings are selected
+        foreach ($toppings as $topping) {
+            if (isset($toppingPrices[$topping])) {
+                $selectedToppings[$topping] = $toppingPrices[$topping];
+                $totalPrice += $toppingPrices[$topping];
+            }
+        }
+
+        printForm_Page3($_SESSION['firstName'], $selectedToppings, number_format($totalPrice, 2)); // Move to Page 3
     }
-     
 
-
-}
-else
-{
-    echo"<div class=\"warning\">Mama Mia thats a spicy meatball! Direct access is prohibited.</div>";
+}else {
+    // Not a POST request, display warning
+    echo "<div class=\"warning\">Mama Mia that's a spicy meatball! Direct access is prohibited.</div>";
 }
 
 function printForm_Page2($firstName, $errorMsg) {
@@ -78,19 +112,30 @@ HTML;
     echo $toppingForm;
 }
 
-function printForm_Page3($fullName, $errorMsg)
-{
+function printForm_Page3($firstName, $selectedToppings, $totalPrice) {
+    
     $orderSummary = <<<HTML
-    <form id="toppingForm" method="POST" action="Final.php">
+    <form id="confirmationForm" method="POST" action="Final.php">
         <div class="title-container">
-            
             <h1><img id="pizza" src="Resources/pizza.png" alt="Pizza Logo">SET Pizza Shop</h1>
-            
         </div>
-        <h2 id="greeting">Ciao $fullName! <img id="hand" src="Resources/italian.png"></h2>
+        <div class="order-summary">
+            <h2 id="greeting">Ciao $firstName! <img id="hand" src="Resources/italian.png"></h2>
+            <h3>Your Order Summary</h3>
+            <ul>
+               <li> stuff go here </li>
+            </ul>
+            <p><strong>Total Price: $</strong> <span id="totalPrice">$totalPrice</span></p>
+            <div class="confirmation-buttons">
+            <button type="submit" name="action" value="confirm">CONFIRM</button>
+            <button type="submit" name="action" value="cancel">CANCEL</button>
+        </div>
+        </div>
     </form>
 HTML;
 
     echo $orderSummary;
 }
+
+
     ?>
