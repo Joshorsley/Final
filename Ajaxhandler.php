@@ -27,13 +27,13 @@ if ($contentType !== 'application/json') {
 $payload = file_get_contents('php://input');
 $data = json_decode($payload, true);
 
-// Ensure the payload is valid JSON
+
 if (json_last_error() !== JSON_ERROR_NONE) {
-    http_response_code(400); // Bad Request
+    http_response_code(400);
     exit(json_encode(['error' => 'Invalid JSON payload.']));
 }
 
-// Initialize the total price with the base price
+
 $totalPrice = $basePrice;
 
 

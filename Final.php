@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         
-        printForm_Page3($_SESSION['firstName'], $selectedToppings, number_format($totalPrice, 2)); // Move to Page 3
+        printForm_Page3($_SESSION['firstName'], $selectedToppings, number_format($totalPrice, 2));
     }
 
 }else {
